@@ -6,7 +6,7 @@
   "scripts": {
     "sass": "node-sass -w -r styles/style.scss -o css",
     "server": "browser-sync start --server --files *",
-    "babel": "babel src --out-file script-compiled.js",
+    "babel": "babel src/App.js --watch --out-file script-compiled.js",
     "dev": "concurrently \"npm run sass\" \"npm run server\" \"npm run babel\""
   },
   "repository": {
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/danielmark0116/timer#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "babel-cli": "^6.26.0",
     "babel-preset-latest": "^6.24.1",
