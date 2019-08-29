@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "sass": "node-sass -w -r styles/style.scss -o css",
+    "server": "browser-sync start --server --files *",
+    "babel": "babel src --out-file script-compiled.js",
+    "dev": "concurrently \"npm run sass\" \"npm run server\" \"npm run babel\""
   },
   "repository": {
     "type": "git",
@@ -16,5 +19,13 @@
   "bugs": {
     "url": "https://github.com/danielmark0116/timer/issues"
   },
-  "homepage": "https://github.com/danielmark0116/timer#readme"
+  "homepage": "https://github.com/danielmark0116/timer#readme",
+  "devDependencies": {
+    "@babel/preset-react": "^7.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
+    "browser-sync": "^2.26.7",
+    "concurrently": "^4.1.2",
+    "node-sass": "^4.12.0"
+  }
 }
