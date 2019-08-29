@@ -27,7 +27,7 @@ class Timer {
 
   updateBtns() {
     this.timerTriggerBtn.innerHTML = !this.running ? 'Start' : 'Stop';
-    this.timerActionBtn.innerHTML = !this.running ? 'Zero' : 'Round';
+    this.timerActionBtn.innerHTML = !this.running ? 'Reset' : 'Round';
   }
 
   trigger() {

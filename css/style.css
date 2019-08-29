@@ -1,12 +1,23 @@
 body {
   box-sizing: border-box; }
 
+.container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto; }
+
+.btns {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center; }
+
 .clock .clock-circle {
   width: 100px;
   height: 100px;
   background: red;
   border-radius: 50%;
-  position: relative; }
+  position: relative;
+  margin: 80px auto 20px; }
   .clock .clock-circle .tip {
     position: absolute;
     top: 0;
@@ -18,3 +29,17 @@ body {
     background: green;
     transform-origin: bottom;
     transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+.records ul {
+  list-style-type: none;
+  margin: 0;
+  margin-top: 20px;
+  padding: 0; }
+  .records ul li {
+    text-align: center;
+    margin: 0;
+    padding: 0; }
+
+.timetab {
+  text-align: center;
+  margin: 20px auto; }

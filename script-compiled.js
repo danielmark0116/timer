@@ -32,7 +32,7 @@ var Timer = function () {
     key: 'updateBtns',
     value: function updateBtns() {
       this.timerTriggerBtn.innerHTML = !this.running ? 'Start' : 'Stop';
-      this.timerActionBtn.innerHTML = !this.running ? 'Zero' : 'Round';
+      this.timerActionBtn.innerHTML = !this.running ? 'Reset' : 'Round';
     }
   }, {
     key: 'trigger',
