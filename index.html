@@ -9,24 +9,22 @@
 </head>
 <body>
     <main>
-        <div id="test"></div>
         <div class="container">
             <section class="clock">
-                <h2>CLOCK</h2>
+                <div class="clock-circle">
+                    <div class="tip"></div>
+                </div>
             </section>
             <section class="timetabs">
                 <h2>Timetabs</h2>
+                <div id="timer-output"></div>
             </section>
             <section class="btns">
-                <button id="start">start</button>
-                <button id="stop">stop</button>
-                <button id="reset">reset</button>
+                <button id="timer-action"></button>
+                <button id="timer-trigger"></button>
             </section>
             <section class="records">
-                <ul>
-                    <li>record</li>
-                    <li>record</li>
-                    <li>record</li>
+                <ul id="timer-records">
                 </ul>
             </section>
         </div>

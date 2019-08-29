@@ -1,2 +1,20 @@
 body {
   box-sizing: border-box; }
+
+.clock .clock-circle {
+  width: 100px;
+  height: 100px;
+  background: red;
+  border-radius: 50%;
+  position: relative; }
+  .clock .clock-circle .tip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 1px;
+    height: 50%;
+    background: green;
+    transform-origin: bottom;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }

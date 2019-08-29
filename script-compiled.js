@@ -4,8 +4,13 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var timerOutput = document.getElementById('timer-output');
+var recordsList = document.getElementById('timer-records');
+var timerTrigger = document.getElementById('timer-trigger');
+var timerAction = document.getElementById('timer-action');
+
 var Timer = function () {
-  function Timer() {
+  function Timer(domTimerOutputObject, domRecordsOutputObject, timerTriggerBtn, timerActionBtn) {
     _classCallCheck(this, Timer);
 
     this.running = false;
@@ -14,12 +19,37 @@ var Timer = function () {
       seconds: 0,
       minutes: 0
     };
+    this.records = [];
+    this.domTimerOutputObject = domTimerOutputObject;
+    this.domRecordsOutputObject = domRecordsOutputObject;
+    this.timerTriggerBtn = timerTriggerBtn;
+    this.timerActionBtn = timerActionBtn;
     this.renderTime();
+    this.updateBtns();
   }
 
+  //   start() {
+  //     if (!this.running) {
+  //       this.running = true;
+  //       this.interval =
+  //         this.running && setInterval(() => this.calculateTime(), 10);
+  //     }
+  //   }
+
+  //   stop() {
+  //     this.running = false;
+  //     !this.running && clearInterval(this.interval);
+  //   }
+
   _createClass(Timer, [{
-    key: 'start',
-    value: function start() {
+    key: 'updateBtns',
+    value: function updateBtns() {
+      this.timerTriggerBtn.innerHTML = !this.running ? 'Start' : 'Stop';
+      this.timerActionBtn.innerHTML = !this.running ? 'Zero' : 'Round';
+    }
+  }, {
+    key: 'trigger',
+    value: function trigger() {
       var _this = this;
 
       if (!this.running) {
@@ -27,14 +57,21 @@ var Timer = function () {
         this.interval = this.running && setInterval(function () {
           return _this.calculateTime();
         }, 10);
+      } else if (this.running) {
+        this.running = false;
+        clearInterval(this.interval);
       }
+      this.updateBtns();
     }
   }, {
-    key: 'stop',
-    value: function stop() {
-      this.running = false;
-
-      !this.running && clearInterval(this.interval);
+    key: 'action',
+    value: function action() {
+      if (this.running) {
+        this.addRecord();
+      } else if (!this.running) {
+        this.resetRecords();
+        this.resetTimer();
+      }
     }
   }, {
     key: 'calculateTime',
@@ -43,6 +80,7 @@ var Timer = function () {
       if (this.time.miliseconds >= 100) {
         this.time.seconds += 1;
         this.time.miliseconds = 0;
+        this.animateTip();
       }
       if (this.time.seconds >= 60) {
         this.time.minutes += 1;
@@ -60,9 +98,16 @@ var Timer = function () {
       return input;
     }
   }, {
+    key: 'animateTip',
+    value: function animateTip() {
+      if (document.querySelector('.tip')) {
+        document.querySelector('.tip').style.transform = 'rotate(' + this.time.seconds * 6 + 'deg)';
+      }
+    }
+  }, {
     key: 'renderTime',
     value: function renderTime() {
-      document.getElementById('test').innerHTML = this.formatTwoDigits(this.time.minutes) + ':' + this.formatTwoDigits(this.time.seconds) + ':' + this.formatTwoDigits(this.time.miliseconds);
+      this.domTimerOutputObject.innerHTML = this.formatTwoDigits(this.time.minutes) + ':' + this.formatTwoDigits(this.time.seconds) + ':' + this.formatTwoDigits(this.time.miliseconds);
     }
   }, {
     key: 'resetTimer',
@@ -73,21 +118,36 @@ var Timer = function () {
         minutes: 0
       };
 
+      this.resetRecords();
+      this.animateTip();
       !this.running && this.renderTime();
+    }
+  }, {
+    key: 'addRecord',
+    value: function addRecord() {
+      var record = this.formatTwoDigits(this.time.minutes) + ':' + this.formatTwoDigits(this.time.seconds) + ':' + this.formatTwoDigits(this.time.miliseconds);
+      this.running && this.records.push(record);
+      this.domRecordsOutputObject.innerHTML = this.records.map(function (x) {
+        return '<li>' + x.trim() + '</li>';
+      }).join('');
+    }
+  }, {
+    key: 'resetRecords',
+    value: function resetRecords() {
+      this.domRecordsOutputObject.innerHTML = '';
+      this.records = [];
     }
   }]);
 
   return Timer;
 }();
 
-var timer = new Timer('string testowy');
+var timer = new Timer(timerOutput, recordsList, timerTrigger, timerAction);
 
-document.getElementById('start').addEventListener('click', function () {
-  timer.start();
+timerTrigger.addEventListener('click', function () {
+  timer.trigger();
 });
-document.getElementById('stop').addEventListener('click', function () {
-  timer.stop();
-});
-document.getElementById('reset').addEventListener('click', function () {
-  timer.resetTimer();
+
+timerAction.addEventListener('click', function () {
+  timer.action();
 });
