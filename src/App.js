@@ -25,19 +25,6 @@ class Timer {
     this.updateBtns();
   }
 
-  //   start() {
-  //     if (!this.running) {
-  //       this.running = true;
-  //       this.interval =
-  //         this.running && setInterval(() => this.calculateTime(), 10);
-  //     }
-  //   }
-
-  //   stop() {
-  //     this.running = false;
-  //     !this.running && clearInterval(this.interval);
-  //   }
-
   updateBtns() {
     this.timerTriggerBtn.innerHTML = !this.running ? 'Start' : 'Stop';
     this.timerActionBtn.innerHTML = !this.running ? 'Zero' : 'Round';

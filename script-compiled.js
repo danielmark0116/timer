@@ -28,19 +28,6 @@ var Timer = function () {
     this.updateBtns();
   }
 
-  //   start() {
-  //     if (!this.running) {
-  //       this.running = true;
-  //       this.interval =
-  //         this.running && setInterval(() => this.calculateTime(), 10);
-  //     }
-  //   }
-
-  //   stop() {
-  //     this.running = false;
-  //     !this.running && clearInterval(this.interval);
-  //   }
-
   _createClass(Timer, [{
     key: 'updateBtns',
     value: function updateBtns() {
