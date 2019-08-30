@@ -6,12 +6,12 @@ body {
   background: 300; }
 
 .clock .clock-circle {
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   background: transparent;
   border-radius: 50%;
   position: relative;
-  margin: 10px auto 20px; }
+  margin: 0 auto 20px; }
   @media (max-width: 500px) {
     .clock .clock-circle {
       margin: 0 auto; } }
@@ -22,8 +22,8 @@ body {
     right: 0;
     bottom: 0;
     margin: auto;
-    width: 50%;
-    height: 50%;
+    width: 60%;
+    height: 60%;
     padding: 10px;
     border-radius: 50%;
     border: 1px solid #c518cc; }
@@ -41,7 +41,7 @@ body {
     bottom: 50%;
     margin: 0 auto;
     width: 2px;
-    height: 24%;
+    height: 30%;
     border-radius: 10px;
     background: #96009d;
     transform-origin: bottom;
@@ -67,7 +67,13 @@ body {
   color: #c518cc;
   font-family: "Quicksand";
   margin: 10px 20px;
-  box-shadow: 0 5px 30px rgba(46, 46, 46, 0.1); }
+  box-shadow: 0 5px 30px rgba(46, 46, 46, 0.1);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
   .btn-primary {
     border-color: #c518cc;
     color: #c518cc; }

@@ -6,7 +6,7 @@
   "scripts": {
     "sass": "node-sass -w -r styles/style.scss -o css",
     "server": "browser-sync start --server --files *",
-    "babel": "babel src/App.js --watch --out-file script-compiled.js",
+    "babel": "babel src --watch --out-file script-compiled.js",
     "dev": "concurrently \"npm run sass\" \"npm run server\" \"npm run babel\""
   },
   "repository": {

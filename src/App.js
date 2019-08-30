@@ -108,9 +108,13 @@ class Timer {
     )}:${this.formatTwoDigits(this.time.seconds)}:${this.formatTwoDigits(
       this.time.miliseconds
     )}`;
-    this.running && this.records.push(record);
+    this.running && this.records.unshift(record);
+    console.log(this.records);
     this.domRecordsOutputObject.innerHTML = this.records
-      .map((x, i) => `<li>${x.trim()}<span>${i + 1} record</span></li>`)
+      .map(
+        (x, i) =>
+          `<li>${x.trim()}<span>${this.records.length - i} record</span></li>`
+      )
       .join('');
   }
 
@@ -122,10 +126,12 @@ class Timer {
 
 const timer = new Timer(timerOutput, recordsList, timerTrigger, timerAction);
 
-timerTrigger.addEventListener('click', function() {
+timerTrigger.addEventListener('click', function(e) {
+  e.preventDefault();
   timer.trigger();
 });
 
-timerAction.addEventListener('click', function() {
+timerAction.addEventListener('click', function(e) {
+  e.preventDefault();
   timer.action();
 });

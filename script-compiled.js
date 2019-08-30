@@ -1,5 +1,75 @@
 'use strict';
 
+var clockCircle = document.querySelector('.clock-circle');
+var timetab = document.querySelector('.timetab');
+var btns = document.querySelectorAll('.btn');
+var app = document.querySelector('.app');
+
+var clockPopTimeline = new TimelineMax({ repeat: 0, repeatDelay: 0 });
+var clockPop = function clockPop() {
+  clockPopTimeline.to(clockCircle, 0.1, { y: -2 }).to(clockCircle, 0.5, { y: 0, ease: Back.easeOut.config(10) });
+};
+
+var btnAnimationTimeline = new TimelineMax({ repeat: 0, repeatDelay: 0 });
+var btnAnimation = function btnAnimation(btn, isStart) {
+  if (isStart) {
+    btnAnimationTimeline.to(btn, 0.1, { scale: 0.9 });
+  } else {
+    btnAnimationTimeline.to(btn, 0.3, {
+      scale: 1,
+      ease: Back.easeOut.config(4)
+    });
+  }
+};
+
+TweenMax.set(timetab, {
+  transformPerspective: 400,
+  transformOrigin: 'center center'
+});
+
+btns.forEach(function (btn) {
+  var rotationValue = 5;
+  var startTiltTime = 0.1;
+
+  var sideRotation = btn.dataset.side === 'right' ? true : btn.dataset.side === 'left' && false;
+
+  btn.addEventListener('mousedown', function () {
+    TweenMax.to(timetab, startTiltTime, {
+      rotationY: '' + (sideRotation ? rotationValue : -rotationValue)
+    });
+
+    if (!btnAnimationTimeline._active) {
+      btnAnimation(btn, true);
+    }
+  });
+
+  btn.addEventListener('touchstart', function () {
+    TweenMax.to(timetab, startTiltTime, {
+      rotationY: '' + (sideRotation ? rotationValue : -rotationValue)
+    });
+    if (!btnAnimationTimeline._active) {
+      btnAnimation(btn, true);
+    }
+  });
+
+  btn.addEventListener('mouseup', function () {
+    TweenMax.to(timetab, 0.7, { rotationY: 0, ease: Back.easeOut.config(5) });
+    if (!clockPopTimeline._active) {
+      clockPop();
+    }
+    btnAnimation(btn, false);
+  });
+
+  btn.addEventListener('touchend', function () {
+    TweenMax.to(timetab, 0.7, { rotationY: 0, ease: Back.easeOut.config(5) });
+    if (!clockPopTimeline._active) {
+      clockPop();
+    }
+    btnAnimation(btn, false);
+  });
+});
+'use strict';
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -112,10 +182,13 @@ var Timer = function () {
   }, {
     key: 'addRecord',
     value: function addRecord() {
+      var _this2 = this;
+
       var record = this.formatTwoDigits(this.time.minutes) + ':' + this.formatTwoDigits(this.time.seconds) + ':' + this.formatTwoDigits(this.time.miliseconds);
-      this.running && this.records.push(record);
+      this.running && this.records.unshift(record);
+      console.log(this.records);
       this.domRecordsOutputObject.innerHTML = this.records.map(function (x, i) {
-        return '<li>' + x.trim() + '<span>' + (i + 1) + ' record</span></li>';
+        return '<li>' + x.trim() + '<span>' + (_this2.records.length - i) + ' record</span></li>';
       }).join('');
     }
   }, {
@@ -131,10 +204,12 @@ var Timer = function () {
 
 var timer = new Timer(timerOutput, recordsList, timerTrigger, timerAction);
 
-timerTrigger.addEventListener('click', function () {
+timerTrigger.addEventListener('click', function (e) {
+  e.preventDefault();
   timer.trigger();
 });
 
-timerAction.addEventListener('click', function () {
+timerAction.addEventListener('click', function (e) {
+  e.preventDefault();
   timer.action();
 });
