@@ -1,12 +1,12 @@
 // GLOBAL IMPORTS
-@import 'globals';
 @import 'variables';
 @import 'fonts';
+@import 'globals';
 
 // COMPONENTS
+@import 'components/clock';
 @import 'components/app';
 @import 'components/btn';
 @import 'components/btns';
-@import 'components/clock';
 @import 'components/records';
 @import 'components/timetab';

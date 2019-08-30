@@ -88,13 +88,13 @@ var Timer = function () {
     key: 'animateTip',
     value: function animateTip() {
       if (document.querySelector('.tip')) {
-        document.querySelector('.tip').style.transform = 'rotate(' + this.time.seconds * 6 + 'deg)';
+        document.querySelector('.tip').style.transform = 'rotate(' + (this.time.minutes * 360 + this.time.seconds * 6) + 'deg)';
       }
     }
   }, {
     key: 'renderTime',
     value: function renderTime() {
-      this.domTimerOutputObject.innerHTML = this.formatTwoDigits(this.time.minutes) + ':' + this.formatTwoDigits(this.time.seconds) + ':' + this.formatTwoDigits(this.time.miliseconds);
+      this.domTimerOutputObject.innerHTML = '<span>' + this.formatTwoDigits(this.time.minutes) + '</span>:<span>' + this.formatTwoDigits(this.time.seconds) + '</span>:<span>' + this.formatTwoDigits(this.time.miliseconds) + '</span>';
     }
   }, {
     key: 'resetTimer',
@@ -114,8 +114,8 @@ var Timer = function () {
     value: function addRecord() {
       var record = this.formatTwoDigits(this.time.minutes) + ':' + this.formatTwoDigits(this.time.seconds) + ':' + this.formatTwoDigits(this.time.miliseconds);
       this.running && this.records.push(record);
-      this.domRecordsOutputObject.innerHTML = this.records.map(function (x) {
-        return '<li>' + x.trim() + '</li>';
+      this.domRecordsOutputObject.innerHTML = this.records.map(function (x, i) {
+        return '<li>' + x.trim() + '<span>' + (i + 1) + ' record</span></li>';
       }).join('');
     }
   }, {

@@ -1,3 +1,12 @@
 body {
   box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: $regular;
+  background: $light;
+}
+
+@mixin mobile {
+  @media (max-width: 500px) {
+    @content;
+  }
 }

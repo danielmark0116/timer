@@ -12,15 +12,32 @@
         <div class="container">
             <section class="clock">
                 <div class="clock-circle">
+                    <div class="clock-circle-small"></div>
+                    <svg class="circle-svg">
+                    <defs>
+                        <filter id="dropshadow" height="190%">
+                            <feGaussianBlur in="SourceAlpha" stdDeviation="7"/> <!-- stdDeviation is how much to blur -->
+                            <feOffset dx="0" dy="5" result="offsetblur"/> <!-- how much to offset -->
+                            <feComponentTransfer>
+                                <feFuncA type="linear" slope="0.3"/> <!-- slope is the opacity of the shadow -->
+                            </feComponentTransfer>
+                            <feMerge> 
+                                <feMergeNode/> <!-- this contains the offset blurred image -->
+                                <feMergeNode in="SourceGraphic"/> <!-- this contains the element that the filter is applied to -->
+                            </feMerge>
+                        </filter>
+                    </defs>
+                        <circle class="timer-" cx="150" cy="150" r="110" style="filter:url(#dropshadow)" />
+                    </svg>
                     <div class="tip"></div>
                 </div>
             </section>
             <section class="timetab">
-                <div id="timer-output"></div>
+                <div id="timer-output" class="timer-output"></div>
             </section>
             <section class="btns">
-                <button id="timer-action"></button>
-                <button id="timer-trigger"></button>
+                <button id="timer-action" class="btn btn-secondary"></button>
+                <button id="timer-trigger" class="btn btn-primary"></button>
             </section>
             <section class="records">
                 <ul id="timer-records">

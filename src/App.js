@@ -76,16 +76,18 @@ class Timer {
   animateTip() {
     if (document.querySelector('.tip')) {
       document.querySelector('.tip').style.transform = `rotate(${this.time
-        .seconds * 6}deg)`;
+        .minutes *
+        360 +
+        this.time.seconds * 6}deg)`;
     }
   }
 
   renderTime() {
-    this.domTimerOutputObject.innerHTML = `${this.formatTwoDigits(
+    this.domTimerOutputObject.innerHTML = `<span>${this.formatTwoDigits(
       this.time.minutes
-    )}:${this.formatTwoDigits(this.time.seconds)}:${this.formatTwoDigits(
-      this.time.miliseconds
-    )}`;
+    )}</span>:<span>${this.formatTwoDigits(
+      this.time.seconds
+    )}</span>:<span>${this.formatTwoDigits(this.time.miliseconds)}</span>`;
   }
 
   resetTimer() {
@@ -108,7 +110,7 @@ class Timer {
     )}`;
     this.running && this.records.push(record);
     this.domRecordsOutputObject.innerHTML = this.records
-      .map(x => `<li>${x.trim()}</li>`)
+      .map((x, i) => `<li>${x.trim()}<span>${i + 1} record</span></li>`)
       .join('');
   }
 

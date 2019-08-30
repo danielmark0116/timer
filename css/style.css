@@ -1,45 +1,167 @@
+@import url("https://fonts.googleapis.com/css?family=Quicksand:300,400,700&display=swap");
 body {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+  background: 300; }
+
+.clock .clock-circle {
+  width: 300px;
+  height: 300px;
+  background: transparent;
+  border-radius: 50%;
+  position: relative;
+  margin: 10px auto 20px; }
+  @media (max-width: 500px) {
+    .clock .clock-circle {
+      margin: 0 auto; } }
+  .clock .clock-circle .clock-circle-small {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 50%;
+    height: 50%;
+    padding: 10px;
+    border-radius: 50%;
+    border: 1px solid #c518cc; }
+  .clock .clock-circle svg.circle-svg {
+    width: 100%;
+    height: 100%; }
+  .clock .clock-circle circle {
+    fill: none;
+    stroke-width: 5;
+    stroke: #c518cc; }
+  .clock .clock-circle .tip {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 50%;
+    margin: 0 auto;
+    width: 2px;
+    height: 24%;
+    border-radius: 10px;
+    background: #96009d;
+    transform-origin: bottom;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
 .container {
   width: 100%;
-  max-width: 500px;
+  max-width: 400px;
   margin: 0 auto; }
+
+.btn {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid #c518cc;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #c518cc;
+  font-family: "Quicksand";
+  margin: 10px 20px;
+  box-shadow: 0 5px 30px rgba(46, 46, 46, 0.1); }
+  .btn-primary {
+    border-color: #c518cc;
+    color: #c518cc; }
+  .btn-secondary {
+    border-color: #888888;
+    color: #888888; }
+  .btn:focus, .btn:active {
+    outline: none; }
+  .btn:hover {
+    cursor: pointer; }
 
 .btns {
   margin: 0 auto;
   display: flex;
   justify-content: center; }
 
-.clock .clock-circle {
-  width: 100px;
-  height: 100px;
-  background: red;
-  border-radius: 50%;
-  position: relative;
-  margin: 80px auto 20px; }
-  .clock .clock-circle .tip {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    width: 1px;
-    height: 50%;
-    background: green;
-    transform-origin: bottom;
-    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-
 .records ul {
   list-style-type: none;
   margin: 0;
   margin-top: 20px;
-  padding: 0; }
+  padding: 10px 25px; }
   .records ul li {
-    text-align: center;
+    text-align: left;
     margin: 0;
-    padding: 0; }
+    padding: 0;
+    font-weight: 700;
+    color: #96009d;
+    font-size: 24px;
+    letter-spacing: 1px; }
+    .records ul li span {
+      float: right;
+      color: #c518cc;
+      font-size: 14px;
+      transform: translateY(50%);
+      letter-spacing: 0; }
 
 .timetab {
   text-align: center;
-  margin: 20px auto; }
+  margin: 0 auto;
+  background: #c518cc;
+  background: linear-gradient(135deg, #c518cc 0%, #96009d 100%);
+  margin: 10px 10px 40px;
+  padding: 20px;
+  border-radius: 25px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 20px 40px rgba(136, 136, 136, 0.5);
+  min-height: 100px;
+  color: #ffffff;
+  position: relative; }
+  .timetab:before {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    content: '';
+    width: 70px;
+    height: 70px;
+    background: url("../assets/timer-png.png");
+    background-size: cover; }
+    @media (max-width: 500px) {
+      .timetab:before {
+        width: 50px;
+        height: 50px; } }
+  @media (max-width: 500px) {
+    .timetab {
+      min-height: 70px; } }
+  .timetab .timer-output {
+    font-size: 58px;
+    font-weight: 700;
+    text-shadow: 0 5px 10px rgba(46, 46, 46, 0.4); }
+    @media (max-width: 500px) {
+      .timetab .timer-output {
+        font-size: 40px; } }
+    .timetab .timer-output span {
+      width: 70px;
+      display: inline-flex;
+      text-align: center;
+      justify-content: center;
+      position: relative; }
+      .timetab .timer-output span:before {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.59);
+        font-weight: 700;
+        text-shadow: none;
+        position: absolute;
+        bottom: -15px;
+        left: 0;
+        right: 0;
+        margin: 0 auto; }
+      .timetab .timer-output span:nth-child(1):before {
+        content: 'min'; }
+      .timetab .timer-output span:nth-child(2):before {
+        content: 'sec'; }
+      .timetab .timer-output span:nth-child(3):before {
+        content: 'ms'; }
+      @media (max-width: 500px) {
+        .timetab .timer-output span {
+          width: 50px; } }

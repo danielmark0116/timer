@@ -1,0 +1,38 @@
+$btn-size: 90px;
+
+.btn {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  width: $btn-size;
+  height: $btn-size;
+  border-radius: 50%;
+  border: 3px solid $purple;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: $bold;
+  color: $purple;
+  font-family: $font;
+  margin: 10px 20px;
+  box-shadow: 0 5px 30px rgba($dark, 0.1);
+
+  &-primary {
+    border-color: $purple;
+    color: $purple;
+  }
+
+  &-secondary {
+    border-color: $grey;
+    color: $grey;
+  }
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
