@@ -11,10 +11,6 @@ class App extends React.Component {
       interval: null,
       records: []
     };
-    this.triggerTimer = this.triggerTimer.bind(this);
-    this.triggerAction = this.triggerAction.bind(this);
-    this.startTimer = this.startTimer.bind(this);
-    this.calculateTime = this.calculateTime.bind(this);
   }
 
   componentDidMount() {

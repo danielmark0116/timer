@@ -108,10 +108,6 @@ var App = function (_React$Component) {
       interval: null,
       records: []
     };
-    _this.triggerTimer = _this.triggerTimer.bind(_this);
-    _this.triggerAction = _this.triggerAction.bind(_this);
-    _this.startTimer = _this.startTimer.bind(_this);
-    _this.calculateTime = _this.calculateTime.bind(_this);
     return _this;
   }
 
