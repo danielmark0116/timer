@@ -8,45 +8,11 @@
     <title>TIMER APP</title>
 </head>
 <body>
-    <main>
-        <div class="container app">
-            <section class="clock">
-                <div class="clock-circle">
-                    <div class="clock-circle-small"></div>
-                    <svg class="circle-svg">
-                    <defs>
-                        <filter id="dropshadow" height="190%">
-                            <feGaussianBlur in="SourceAlpha" stdDeviation="7"/> <!-- stdDeviation is how much to blur -->
-                            <feOffset dx="0" dy="5" result="offsetblur"/> <!-- how much to offset -->
-                            <feComponentTransfer>
-                                <feFuncA type="linear" slope="0.3"/> <!-- slope is the opacity of the shadow -->
-                            </feComponentTransfer>
-                            <feMerge> 
-                                <feMergeNode/> <!-- this contains the offset blurred image -->
-                                <feMergeNode in="SourceGraphic"/> <!-- this contains the element that the filter is applied to -->
-                            </feMerge>
-                        </filter>
-                    </defs>
-                        <circle class="timer-" cx="125" cy="125" r="100" style="filter:url(#dropshadow)" />
-                    </svg>
-                    <div class="tip"></div>
-                </div>
-            </section>
-            <section class="timetab">
-                <div id="timer-output" class="timer-output"></div>
-            </section>
-            <section class="btns">
-                <button id="timer-action" data-side="left" class="btn btn-secondary"></button>
-                <button id="timer-trigger" data-side="right" class="btn btn-primary"></button>
-            </section>
-            <section class="records">
-                <ul id="timer-records">
-                </ul>
-            </section>
-        </div>
-    </main>
+    <div id="root"></div>
     
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
-    <script type="text/javascript" src="script-compiled.js"></script>
+    <script type="text/javascript" src="./build.js"></script>
 </body>
 </html>
