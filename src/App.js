@@ -21,7 +21,6 @@ class App extends React.Component {
     const clockCircle = document.querySelector('.clock-circle');
     const timetab = document.querySelector('.timetab');
     const btns = document.querySelectorAll('.btn');
-    const app = document.querySelector('.app');
 
     const clockPopTimeline = new TimelineMax({ repeat: 0, repeatDelay: 0 });
     const clockPop = () => {
@@ -99,25 +98,25 @@ class App extends React.Component {
     });
   }
 
-  formatTwoDigits(input) {
+  formatTwoDigits = input => {
     input = input.toString();
     if (input.length < 2) {
       input = `0${input}`;
     }
     return input;
-  }
+  };
 
-  startTimer() {
+  startTimer = () => {
     this.setState({
       interval: setInterval(() => this.calculateTime(), 10)
     });
-  }
+  };
 
-  stopTimer() {
+  stopTimer = () => {
     clearInterval(this.state.interval);
-  }
+  };
 
-  calculateTime() {
+  calculateTime = () => {
     this.setState(
       {
         miliseconds: this.state.miliseconds + 1
@@ -137,9 +136,9 @@ class App extends React.Component {
         }
       }
     );
-  }
+  };
 
-  triggerAction() {
+  triggerAction = () => {
     const { minutes, seconds, miliseconds } = this.state;
 
     if (this.state.running) {
@@ -159,9 +158,9 @@ class App extends React.Component {
         records: []
       });
     }
-  }
+  };
 
-  triggerTimer() {
+  triggerTimer = () => {
     this.setState(
       {
         running: !this.state.running
@@ -182,7 +181,7 @@ class App extends React.Component {
         }
       }
     );
-  }
+  };
 
   render() {
     const { records } = this.state;
